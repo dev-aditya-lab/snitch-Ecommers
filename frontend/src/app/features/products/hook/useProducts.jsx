@@ -9,8 +9,8 @@ export const useProducts = () => {
     const fetchSellerProducts = async () => {
         dispatch(setLoading(true));
         try {
-            const products = await getSellerProducts();
-            dispatch(setSellerProducts(products));
+            const data = await getSellerProducts();
+            dispatch(setSellerProducts(data.products));
         } catch (err) {
             dispatch(setError(err.message || "Failed to fetch seller products"));
         } finally {
@@ -20,13 +20,15 @@ export const useProducts = () => {
     const createNewProduct = async (productData) => {
         dispatch(setLoading(true));
         try {
-            const newProduct = await createProduct(productData);
-            dispatch(setSellerProducts([...SellerProducts, newProduct]));
+            const data = await createProduct(productData);
+            dispatch(setSellerProducts([...SellerProducts, data.product]));
+            return true;
         } catch (err) {
             dispatch(setError(err.message || "Failed to create product"));
+            return false;
         } finally {
             dispatch(setLoading(false));
         }
     };
-    return { fetchSellerProducts, createNewProduct, loading, error };
+    return { fetchSellerProducts, createNewProduct, SellerProducts, loading, error };
 }

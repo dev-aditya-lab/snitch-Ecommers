@@ -6,9 +6,9 @@ const productsApi = axios.create({
   withCredentials: true,
 });
 
-export const createProduct = async ({ title, description, priceAmount, priceCurrency, images }) => {
+export const createProduct = async (formData) => {
   try {
-    const response = await productsApi.post("/create", { title, description, priceAmount, priceCurrency, images });
+    const response = await productsApi.post("/create", formData);
     return response.data;
   } catch (error) {
     console.error("Error creating product:", error);

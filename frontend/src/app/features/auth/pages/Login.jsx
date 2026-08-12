@@ -26,7 +26,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 lg:flex">
+    <div className="min-h-screen bg-white lg:flex">
       {/* Brand panel — desktop only */}
       <div className="relative hidden overflow-hidden bg-neutral-900 lg:flex lg:w-1/2 lg:items-end lg:justify-center xl:w-3/5">
         <img
@@ -48,14 +48,14 @@ export default function Login() {
       <div className="flex min-h-screen flex-1 items-center justify-center px-6 py-16 sm:px-10 lg:w-1/2 lg:px-16 xl:w-2/5 xl:px-24">
         <div className="w-full max-w-sm">
           <div className="mb-10 text-center lg:text-left">
-            <p className="text-sm font-semibold tracking-[0.2em] text-amber-400 uppercase lg:hidden">Snitch</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white lg:mt-0">Welcome back</h1>
-            <p className="mt-3 text-sm text-neutral-400">Sign in to continue to your account</p>
+            <p className="text-sm font-semibold tracking-[0.2em] text-amber-600 uppercase lg:hidden">Snitch</p>
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-neutral-900 lg:mt-0">Welcome back</h1>
+            <p className="mt-3 text-sm text-neutral-500">Sign in to continue to your account</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm text-neutral-300">
+              <label htmlFor="email" className="block text-sm text-neutral-700">
                 Email
               </label>
               <input
@@ -66,12 +66,12 @@ export default function Login() {
                 onChange={handleChange}
                 required
                 placeholder="jane@example.com"
-                className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-600 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+                className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-900 placeholder-neutral-400 outline-none transition focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
               />
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm text-neutral-300">
+              <label htmlFor="password" className="block text-sm text-neutral-700">
                 Password
               </label>
               <input
@@ -82,12 +82,12 @@ export default function Login() {
                 onChange={handleChange}
                 required
                 placeholder="••••••••"
-                className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-white placeholder-neutral-600 outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20"
+                className="w-full rounded-xl border border-neutral-200 bg-white px-4 py-3 text-neutral-900 placeholder-neutral-400 outline-none transition focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20"
               />
             </div>
 
             {error && (
-              <p className="text-sm text-red-400">
+              <p className="text-sm text-red-600">
                 {typeof error === "string" ? error : error.message || "Something went wrong. Please try again."}
               </p>
             )}
@@ -101,22 +101,22 @@ export default function Login() {
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="h-px flex-1 bg-neutral-800" />
-              <span className="text-xs tracking-wide text-neutral-500 uppercase">Or</span>
-              <div className="h-px flex-1 bg-neutral-800" />
+              <div className="h-px flex-1 bg-neutral-200" />
+              <span className="text-xs tracking-wide text-neutral-400 uppercase">Or</span>
+              <div className="h-px flex-1 bg-neutral-200" />
             </div>
 
             <a
               href="/api/auth/google"
-              className="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900 py-3 font-medium text-white transition hover:bg-neutral-800"
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-200 bg-white py-3 font-medium text-neutral-900 shadow-sm transition hover:bg-neutral-50"
             >
               <FcGoogle className="h-5 w-5" />
               Continue with Google
             </a>
 
-            <p className="text-center text-sm text-neutral-400">
+            <p className="text-center text-sm text-neutral-500">
               Don&apos;t have an account?{" "}
-              <Link to="/register" className="font-medium text-amber-400 hover:text-amber-300">
+              <Link to="/register" className="font-medium text-amber-600 hover:text-amber-700">
                 Sign up
               </Link>
             </p>

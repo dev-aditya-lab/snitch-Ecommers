@@ -10,7 +10,7 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 }, // Limit file size to 5MB
 })
 
-ProductRouter.post("/create", validateCreateProduct, upload.array("images", 7), authenticateSeller, createProductController);
+ProductRouter.post("/create", authenticateSeller, upload.array("images", 7), validateCreateProduct, createProductController);
 ProductRouter.get("/seller-products", authenticateSeller, getSellerProductsController);
 
 export default ProductRouter;

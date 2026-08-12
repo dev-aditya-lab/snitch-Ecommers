@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import SignUp from "./features/auth/pages/SignUp";
 import Login from "./features/auth/pages/Login";
 import SellerProducts from "./features/products/pages/SellerProducts";
-import CreateProduct from "./features/products/pages/createProduct";
+import CreateProduct from "./features/products/pages/CreateProduct";
 
 
 export const router = createBrowserRouter([
@@ -18,9 +18,6 @@ export const router = createBrowserRouter([
         element: <Login />
     },{
         path: "/dashboard",
-        element: <h1>Dashboard</h1>
-    },{
-        path: "/seller/products",
         element: <SellerProducts />
     },{
         path: "/seller/products/create",
