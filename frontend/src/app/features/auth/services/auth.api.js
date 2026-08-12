@@ -26,3 +26,12 @@ export async function loginUser({ email, password }) {
     throw error.response.data;
   }
 }
+
+export async function getCurrentUser() {
+  try {
+    const response = await authApiInstance.get("/get-user");
+    return response.data;
+  } catch (error) {
+    throw error.response.data;
+  }
+}

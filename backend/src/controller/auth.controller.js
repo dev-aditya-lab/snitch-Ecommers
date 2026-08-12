@@ -85,3 +85,20 @@ export async function googleAuthCallbackController(req, res) {
     res.cookie("token", token);
     res.redirect(`${config.FRONTEND_URL}/dashboard`);
 }
+
+export async function getCurrentUserController(req, res) {
+    try {
+        const user = await userModel.findById(req.user.id).select("-password");
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json({
+            message: "User fetched successfully",
+            success: true,
+            user
+        });
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({ message: "Internal server error" });
+    }
+}

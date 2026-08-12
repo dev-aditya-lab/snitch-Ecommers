@@ -1,5 +1,5 @@
 import { setError,setLoading,setUser } from "../state/auth.slice";
-import { loginUser, registerUser } from "../services/auth.api";
+import { loginUser, registerUser, getCurrentUser as fetchCurrentUser } from "../services/auth.api";
 import { useDispatch } from "react-redux";
 
 export const useAuth = () => {
@@ -27,6 +27,16 @@ export const useAuth = () => {
             dispatch(setLoading(false));
         }
     };
-
-    return { handleRegister, handleLogin };
+    const getCurrentUser = async () => {
+        dispatch(setLoading(true));
+        try {
+            const result = await fetchCurrentUser();
+            dispatch(setUser(result.user));
+            dispatch(setLoading(false));
+        } catch (error) {
+            dispatch(setError(error));
+            dispatch(setLoading(false));
+        }
+    };
+    return { handleRegister, handleLogin, getCurrentUser };
 };
