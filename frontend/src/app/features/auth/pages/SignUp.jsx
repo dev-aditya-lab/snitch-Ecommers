@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAuth } from "../hook/useAuth";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -32,9 +32,9 @@ export default function SignUp() {
       {/* Brand panel — desktop only */}
       <div className="relative hidden overflow-hidden bg-neutral-900 lg:flex lg:w-1/2 lg:items-end lg:justify-center xl:w-3/5">
         <img
-          src="https://images.unsplash.com/photo-1616987553948-4818e3cef2d2"
+          src="https://images.unsplash.com/photo-1674383253646-7a54fe8403aa"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 object-top h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/60 to-neutral-950/10" />
         <div className="relative z-10 max-w-md px-16 pb-20 text-center">
@@ -150,6 +150,12 @@ export default function SignUp() {
             >
               {loading ? "Creating account..." : "Create account"}
             </button>
+                        <p className="text-center text-sm text-neutral-400">
+              Already have an account?{" "}
+              <Link to="/login" className="font-medium text-amber-400 hover:text-amber-300">
+                Sign in
+              </Link>
+            </p>
           </form>
         </div>
       </div>
