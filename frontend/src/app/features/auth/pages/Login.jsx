@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../hook/useAuth";
 
 export default function Login() {
+    const navigate = useNavigate();
   const { handleLogin } = useAuth();
   const { loading, error } = useSelector((state) => state.auth);
 
@@ -20,6 +21,7 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin(form);
+    navigate("/");
   };
 
   return (
