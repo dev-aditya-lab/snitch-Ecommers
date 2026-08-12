@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useAuth } from "../hook/useAuth";
 import { Link, useNavigate } from "react-router";
+import { FcGoogle } from "react-icons/fc";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -22,9 +23,13 @@ export default function SignUp() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    handleRegister(form);
-    navigate("/"); 
+    try {
+      e.preventDefault();
+      handleRegister(form);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   return (
@@ -150,7 +155,22 @@ export default function SignUp() {
             >
               {loading ? "Creating account..." : "Create account"}
             </button>
-                        <p className="text-center text-sm text-neutral-400">
+
+            <div className="flex items-center gap-3">
+              <div className="h-px flex-1 bg-neutral-800" />
+              <span className="text-xs tracking-wide text-neutral-500 uppercase">Or</span>
+              <div className="h-px flex-1 bg-neutral-800" />
+            </div>
+
+            <a
+              href="/api/auth/google"
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900 py-3 font-medium text-white transition hover:bg-neutral-800"
+            >
+              <FcGoogle className="h-5 w-5" />
+              Continue with Google
+            </a>
+
+            <p className="text-center text-sm text-neutral-400">
               Already have an account?{" "}
               <Link to="/login" className="font-medium text-amber-400 hover:text-amber-300">
                 Sign in

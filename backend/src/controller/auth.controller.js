@@ -2,7 +2,7 @@ import { config } from "../config/env.js";
 import userModel from "../model/user.model.js";
 import jwt from "jsonwebtoken";
 
-async function sendTokenResponse(user, res,message,statusCode = 200) {
+async function sendTokenResponse(user, res, message, statusCode = 200) {
     const token = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: config.JWT_EXPIRES_IN });
     res.cookie("token", token)
     res.status(statusCode).json({
@@ -34,7 +34,7 @@ export async function registerUserController(req, res) {
 }
 
 export async function loginUserController(req, res) {
-    const {  email, password } = req.body;
+    const { email, password } = req.body;
     try {
         const user = await userModel.findOne({ email }).select("+password");
         if (!user) {
@@ -49,4 +49,39 @@ export async function loginUserController(req, res) {
         console.error(err)
         res.status(500).json({ message: "Internal server error" });
     }
+}
+
+export async function googleAuthCallbackController(req, res) {
+    //     {
+    //   id: '100335212624767207331',
+    //   displayName: 'Aditya Gupta (aadi)',
+    //   name: { familyName: 'Gupta', givenName: 'Aditya' },
+    //   emails: [ { value: 'ad1123itya@gmail.com', verified: true } ],
+    //   photos: [
+    //     {
+    //       value: 'https://lh3.googleusercontent.com/a/ACg8ocKxX5tLw6tfe3AsdmvoKEWg_juHBgEA2k2OIIs7RD0hYvJ3ilRYMA=s96-c'
+    //     }
+    //   ],
+    //   provider: 'google',
+    // }
+
+
+    const { id, displayName, emails, photos } = req.user;
+    const email = emails[0].value;
+    const profilePicture = photos[0].value;
+    let user = await userModel.findOne({ email });
+    if (!user) {
+        user = await userModel.create({
+            email,
+            fullName: displayName,
+            contact: "",
+            role: "buyer",
+            profilePicture,
+            googleId: id
+        });
+    }
+
+    const token = jwt.sign({ id: user._id }, config.JWT_SECRET, { expiresIn: config.JWT_EXPIRES_IN });
+    res.cookie("token", token);
+    res.redirect(`${config.FRONTEND_URL}/dashboard`);
 }

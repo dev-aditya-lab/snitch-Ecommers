@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
+import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "../hook/useAuth";
 
 export default function Login() {
@@ -98,6 +99,20 @@ export default function Login() {
             >
               {loading ? "Signing in..." : "Sign in"}
             </button>
+
+            <div className="flex items-center gap-3">
+              <div className="h-px flex-1 bg-neutral-800" />
+              <span className="text-xs tracking-wide text-neutral-500 uppercase">Or</span>
+              <div className="h-px flex-1 bg-neutral-800" />
+            </div>
+
+            <a
+              href="/api/auth/google"
+              className="flex w-full items-center justify-center gap-3 rounded-xl border border-neutral-800 bg-neutral-900 py-3 font-medium text-white transition hover:bg-neutral-800"
+            >
+              <FcGoogle className="h-5 w-5" />
+              Continue with Google
+            </a>
 
             <p className="text-center text-sm text-neutral-400">
               Don&apos;t have an account?{" "}
