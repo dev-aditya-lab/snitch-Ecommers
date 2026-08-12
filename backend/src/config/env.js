@@ -16,4 +16,6 @@ export const config = {
 	GOOGLE_CLIENT_SECRET: checkENV(process.env.GOOGLE_CLIENT_SECRET),
 	GOOGLE_REDIRECT_URI: checkENV(process.env.GOOGLE_REDIRECT_URI),
 	FRONTEND_URL: checkENV(process.env.FRONTEND_URL),
+	IMAGEKIT_PUBLIC_KEY: checkENV(process.env.IMAGEKIT_PUBLIC_KEY),
+	IMAGEKIT_PRIVATE_KEY: checkENV(process.env.IMAGEKIT_PRIVATE_KEY),
 };

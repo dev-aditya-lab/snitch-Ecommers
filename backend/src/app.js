@@ -1,10 +1,13 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
-import authRouter from "./routes/auth.routes.js";
 import passport from "passport";
 import {Strategy as GoogleStrategy} from "passport-google-oauth20";
 import { config } from "./config/env.js";
+
+
+import authRouter from "./routes/auth.routes.js";
+import ProductRouter from "./routes/product.routes.js";
 
 
 const app = express();
@@ -25,6 +28,7 @@ app.use(cookieParser());
 
 
 app.use("/api/auth", authRouter);
+app.use("/api/products", ProductRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to the snith API" });
