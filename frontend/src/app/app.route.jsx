@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
         element: <GuestOnly><Login /></GuestOnly>
     },{
         path: "/dashboard",
-        element: <Protected><SellerProducts /></Protected>
+        element: <Protected role="seller"><SellerProducts /></Protected>
     },{
         path: "/seller/products/create",
         element: <Protected role="seller"><CreateProduct /></Protected>
